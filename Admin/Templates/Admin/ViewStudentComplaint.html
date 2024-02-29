@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudentComplaint</title>
+</head>
+<body>
+    <form action="" method="post">
+        {% csrf_token %}
+        <h1 align="center">New Complaints</h1>
+        <table align="center" border="1">
+            <tr>
+                <th>SL NO</th>
+                <th>TITLE</th>
+                <th>CONTENT</th>
+                <th>DATE</th>
+                <th>STUDENT</th>
+                <th>COLLEGE</th>
+                <th>ACTION</th>
+            </tr>
+            {% for i in data %}
+            <tr>
+                <td>{{ forloop.counter}}</td>
+                <td>{{i.complaint_title}}</td>
+                <td>{{i.complaint_content}}</td>
+                <td>{{i.complaint_date}}</td>
+                <td>{{i.student.student_name}}</td>
+                <td>{{i.student.student_college.college_name}}</td>
+                <td>
+                  
+                    <p><a href="{% url 'Admin:reply' i.id %}">Reply</a></p>
+                  
+                </td>
+            </tr>   
+            {% endfor %} 
+        </table>
+        <h1 align="center">Replied Complaints</h1>
+        <table align="center" border="1">
+            <tr>
+                <th>SL NO</th>
+                <th>TITLE</th>
+                <th>CONTENT</th>
+                <th>DATE</th>
+                <th>STUDENT</th>
+                <th>COLLEGE</th>
+                <th>Reply</th>
+            </tr>
+            {% for i in reply %}
+            <tr>
+                <td>{{ forloop.counter}}</td>
+                <td>{{i.complaint_title}}</td>
+                <td>{{i.complaint_content}}</td>
+                <td>{{i.complaint_date}}</td>
+                <td>{{i.student.student_name}}</td>
+                <td>{{i.student.student_college.college_name}}</td>
+                <td>
+                  
+                    {{i.complaint_reply}}
+                  
+                </td>
+            </tr>   
+            {% endfor %} 
+        </table>
+    </form>
+    
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Year</title>
+</head>
+<body>
+    <form action="" method="post">
+        {% csrf_token %}
+        <table align="center" border="1">
+            <tr>
+                <td>Class Year</td>
+                <td><input type="text" name="txt_classyear" id=""value="{{ydata.year_classyear}}"></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center"><input type="submit" value="Save" name="sub_save"><input type="submit" value="Cancel" name="sub_cancel"></td>
+            </tr>
+        </table>
+        <table align="center" border="1">
+            <tr>
+                <th>SL NO</th>
+                <th>CLASS YEAR</th>
+                <th>ACTION</th>
+            </tr>
+            {% for i in data %}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{i.year_classyear}}</td>
+                <td><a href="{% url 'Admin:delyear' i.id%}">Delete</a>
+                    <a href="{% url 'Admin:edityear' i.id%}">Edit</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </form>    
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudentVerification</title>
+</head>
+<body>
+    <form action="" method="post">
+        {% csrf_token%}
+        <table align="center" border="1">
+            <tr>
+                <th>SL NO</th>
+                <th>NAME</th>
+                <th>ADDRESS</th>
+                <th>CONTACT</th>
+                <th>EMAIL</th>
+                <th>ADMISSION NO</th>
+                <th>DEPARTMENT</th>
+                <th>YEAR</th>
+                <th>PHOTO</th>
+                <TH>ID PROOF</TH>
+                <th>ACTION</th>
+            </tr>
+            {% for i in data %}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{i.student_name}}</td>
+                <td>{{i.student_address}}</td>
+                <td>{{i.student_contact}}</td>
+                <td>{{i.student_email}}</td>
+                <td>{{i.student_adno}}</td>
+                <td>{{i.student_course.department.department_name}}</td>
+                <td>{{i.student_year.year_classyear}}</td>
+                <td><img src="{{i.student_photo.url}}" width="150" height="150"></td>
+                <td><a href="{{i.student_proof.url}}" download>Download</a></td>
+                    <a href="{% url 'College:acceptstud' i.id %}">Accept</a></td>
+               </tr>
+            {% endfor %}
+        </table>
+    </form>
+</body>
+</html>

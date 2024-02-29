@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClassCandidate Application</title>
+</head>
+<body>
+    <form action="" method="post">
+        <table align="center" border="1">
+            <tr>
+                <td>SL NO</td>
+                <td>CANDIDATE NAME</td>
+                <td>EMAIL</td>
+                <td>ADDRESS & CONTACT</td>
+                <td>PHOTO</td>
+                <td>PROOF</td>
+                <td>DEPARTMENT</td>
+                <td>COURSE & YEAR</td>
+                <td>POSITION</td>
+                <td>ACTION</td>
+            </tr>
+            {% for i in data %}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{i.student.student_name}}</td>
+                <td>{{i.student.student_email}}</td>
+                <td>{{i.student.student_address}},{{i.student.student_contact}}</td>
+                <td><img src="{{i.student.student_photo.url}}" width="100" height="100"></a></td>
+                <td><a href="{{i.student.student_proof.url}}" download>Download</a></td>
+                <td>{{i.student.student_course.department.department_name}}</td>
+                <td>{{i.student.student_course.course_name}},{{i.student.student_year.year_classyear}}</td>
+                <td>{{i.position.position_name}}</td>
+                <td>{% if i.candidate_status == 0 %}
+                    <a href="{% url 'Teacher:smark' i.id %}">View Marks</a>
+                    <a href="{% url 'Teacher:caccept' i.id %}">Accept</a>
+                    <a href="{% url 'Teacher:creject' i.id %}">Reject</a>
+                {% elif i.candidate_status == 1 %}
+                    Accepted
+                {% else %}
+                    Rejected
+                {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </form>
+</body>
+</html>

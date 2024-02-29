@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method="post">
+        {% csrf_token %}
+        <table border="1" align="center">
+            <tr>
+                <td>Chair Person</td>
+                <td><select name="ChairPerson">
+                    <option value="">Vote For</option>
+                    {% for i in chairperson %}
+                    <option value="{{i.id}}">{{i.student.student_name}}</option>
+                    {% endfor %}
+                </select></td>
+            </tr>
+            <tr>
+                <td>Vice-ChairPerson</td>
+                <td><select name="VChairPerson">
+                    <option value="">Vote For</option>
+                    {% for i in vc %}
+                    <option value="{{i.id}}">{{i.student.student_name}}</option>
+                    {% endfor %}
+                </select></td>
+            </tr>
+            <tr>
+                <td>General Secretary</td>
+                <td><select name="GeneralSecretary">
+                    <option value="">Vote For</option>
+                    {% for i in gen %}
+                    <option value="{{i.id}}">{{i.student.student_name}}</option>
+                    {% endfor %}
+                </select></td>
+            </tr>
+            <tr>
+                <td>Arts Club Secretary</td>
+                <td><select name="ArtsClubSecretary">
+                    <option value="">Vote For</option>
+                    {% for i in arts %}
+                    <option value="{{i.id}}">{{i.student.student_name}}</option>
+                    {% endfor %}
+                </select></td>
+            </tr>
+            <tr>
+                <td>1st year Representative</td>
+                <td><select name="1styearepresentative">
+                    <option value="">Vote For</option>
+                    {% for i in fst %}
+                    <option value="{{i.id}}">{{i.student.student_name}}</option>
+                    {% endfor %}
+                </select></td>
+            </tr>
+            <tr>
+                <td>2nd year Representative</td>
+                <td><select name="2ndyearepresentative">
+                    <option value="">Vote For</option>
+                    {% for i in sec %}
+                    <option value="{{i.id}}">{{i.student.student_name}}</option>
+                    {% endfor %}
+                </select></td>
+            </tr>
+            <tr>
+                <td>3rd year Representative</td>
+                <td><select name="3rdyearepresentative">
+                    <option value="">Vote For</option>
+                    {% for i in td %}
+                    <option value="{{i.id}}">{{i.student.student_name}}</option>
+                    {% endfor %}
+                </select></td>
+            </tr>
+            <tr>
+                <td>Magazine Editor</td>
+                <td><select name="MagazineEditor">
+                    <option value="">Vote For</option>
+                    {% for i in edit %}
+                    <option value="{{i.id}}">{{i.student.student_name}}</option>
+                    {% endfor %}
+                </select></td>
+            </tr>
+            <tr>
+                <td>Lady Representative</td>
+                <td><select name="LadyRepresentative">
+                    <option value="">Vote For</option>
+                    {% for i in lady %}
+                    <option value="{{i.id}}">{{i.student.student_name}}</option>
+                    {% endfor %}
+                </select></td>
+            </tr>
+            <tr>
+                <td>Councillor  to the University Union</td>
+                <td><select name="CouncillortotheUniversityUnion">
+                    <option value="">Vote For</option>
+                    {% for i in union %}
+                    <option value="{{i.id}}">{{i.student.student_name}}</option>
+                    {% endfor %}
+                </select></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center" ><input type="submit" name="vote" value="Vote"></td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HomePage</title>
+</head>
+<body>
+    <center><h1>Welcome {{data.college_name}}</h1></center>
+    <a href="{% url 'College:myprofile' %}">Myprofile</a>
+    <a href="{% url 'College:editprofile' %}">Editprofile</a>
+    <a href="{% url 'College:changepassword' %}">ChangePassword</a>
+    <a href="{% url 'College:viewelection' %}">View Election</a>
+    <a href="{% url 'College:studentverification' %}">studentverification</a>
+    <a href="{% url 'College:acceptedlist' %}">Accepted Student</a>
+    <a href="{% url 'College:rejectedlist' %}">Rejected Student</a>
+    
+
+    
+</body>
+</html>

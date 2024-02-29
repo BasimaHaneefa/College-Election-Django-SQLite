@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HomePage</title>
+</head>
+<body>
+    <center><h1>Welcome {{data.teacher_name}}</h1></center>
+    <a href="{% url 'Teacher:myprofile' %}">Myprofile</a>
+    <a href="{% url 'Teacher:editprofile' %}">EditProfile</a>
+    <a href="{% url 'Teacher:changepassword' %}">ChangePassword</a>
+    <a href="{% url 'Teacher:clgdept' %}">View Class Election</a>
+    <a href="{% url 'Teacher:clgcandidate' %}">View College Candidate</a>
+    <a href="{% url 'Teacher:CollegeVotingResult' %}">College Voting Result</a>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<h2 align="center" style="color: darkgoldenrod;">
+{% if win  %}
+{{win.candidate_student.student_name}}
+{% endif %} WINNER</h2>
+<table align="center" border="1">
+    <tr>
+        <td>SL NO</td>
+        <td>CANDIDATE NAME</td>
+        <td>VOTE COUNT</td>
+        
+    </tr>
+    {% for candidate in polling %}
+    <tr>
+        <td>{{ forloop.counter }}</td>
+        <td><a href="{% url 'Teacher:winner' candidate.polling_classcandidate__candidate_student__id %}">{{ candidate.polling_classcandidate__candidate_student__student_name }}</a></td>  <!-- Candidate Name with link -->
+        <td>{{ candidate.total_count }}</td>  
+        
+    </tr>
+    {% endfor %}
+</table>

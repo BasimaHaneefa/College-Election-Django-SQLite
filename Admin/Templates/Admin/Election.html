@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Election</title>
+</head>
+<body>
+    <form action="" method="post">
+        {% csrf_token %}
+        <table align="center" border="1">
+            <tr>
+                <td>Fordate</td>
+                <td><input type="date" name="txt_fordate" id=""></td>
+            </tr>
+            <tr>
+                <td>Details</td>
+                <td><textarea name="txt_details" id="" cols="30" rows="10"></textarea></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center"><input type="submit" value="Save" name="sub_save"><input type="submit" value="Cancel" name="sub_cancel"></td>
+            </tr>
+        </table>
+        <table align="center" border="1">
+            <tr>
+                <th>SL NO</th>
+                <th>FORDATE</th>
+                <th>DETAILS</th>
+                <th>ACTION</th>
+            </tr>
+            {% for i in data%}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{i.election_fordate}}</td>
+                <td>{{i.election_details}}</td>
+                <td><a href="{% url 'Admin:delelection' i.id%}">Delete</a>
+                {% if i.election_fordate == current_date %}
+                {% if i.election_status == '0' %}
+                <a href="{% url 'Admin:electionstatus' i.id %}">Start Class election</a>
+                {% elif i.election_status == '1' %}
+                <a href="{% url 'Admin:electionstatus' i.id %}">End Class election</a>
+                {% elif i.election_status == '2' %}
+                <a href="{% url 'Admin:electionstatus' i.id %}">Start College election</a>
+                {% elif i.election_status == '3' %}
+                <a href="{% url 'Admin:electionstatus' i.id %}">End College election</a>
+                {% else %}
+                Election Over
+                {% endif %}
+                {% endif %}
+            </td> </tr>
+            {% endfor %}
+        </table>
+    </form>    
+</body>
+</html>

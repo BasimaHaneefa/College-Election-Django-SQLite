@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HomePage</title>
+</head>
+<body>
+    <center><h1>Welcome {{data.student_name}}</h1></center>
+    <a href="{% url 'Student:myprofile' %}">Myprofile</a>
+    <a href="{% url 'Student:editprofile' %}">Editprofile</a>
+    <a href="{% url 'Student:changepassword' %}">Changepassword</a>
+    <a href="{% url 'Student:viewelection' %}">ViewElection</a>
+    <a href="{% url 'Student:viewmyapplication' %}">View my class candidate application</a>
+   
+</body>
+</html>

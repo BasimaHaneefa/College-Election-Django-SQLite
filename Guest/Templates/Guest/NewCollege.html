@@ -1,0 +1,83 @@
+{% extends 'Guest/Head.html'  %}
+{% load static %}
+{% block content %}
+<br><br><br><br><br><br>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NewCollege</title>
+</head>
+<body>
+    <center><h1>College Registration</h1></center>
+    <div id="tab" align="center">
+    <form action="" method="post"  enctype="multipart/form-data">
+        {% csrf_token%}
+        <table align="center" border="1">
+            <tr>
+                <td>Name</td>
+                <td><input type="text" name="txt_name" ></td>
+            </tr>
+            <tr>
+                <td>Address</td>
+                <td><textarea name="txt_address" id="" cols="30" rows="10"></textarea></td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td><input type="email" name="txt_email" ></td>
+            </tr>
+            <tr>
+                <td>Contact</td>
+                <td><input type="text" name="txt_contact" ></td>
+            </tr>
+            <tr>
+                <td>District</td>
+                <td><select name="sel_district" id="sel_district">
+                    <option value="">---Select---</option>
+                    {% for i in dis %}
+                    <option value="{{i.id}}">{{i.district_name}}</option>
+                    {% endfor %}   
+                </select></td>
+            </tr>
+            <tr>
+                <td>Place</td>
+                <td><select name="sel_place" id="sel_place">
+                    <option value="">---Select---</option>
+                </select></td>
+            </tr>
+            <tr>
+                <td>Logo</td>
+                <td><input type="file" name="file_logo" ></td>
+            </tr>
+            <tr>
+                <td>Proof</td>
+                <td><input type="file" name="file_proof" ></td>
+            </tr>
+            <tr>
+                <td>Password</td>
+                <td><input type="password" name="txt_password" ></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center"><input type="submit" value="Save" name="sub_save"><input type="submit" value="Cancel" name="sub_cancel"></td>
+            </tr>
+        </table>
+    </form>
+</div>
+</body>
+</html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    $("#sel_district").change(function () {
+        var did = $(this).val();
+        var ur = "{% url 'Guest:ajaxplace' %}"
+        $.ajax({
+            url: ur,
+            data: { did: did, },
+            success: function (data) {
+                $("#sel_place").html(data);
+            },
+        });
+    });
+</script>
+{% endblock content %}

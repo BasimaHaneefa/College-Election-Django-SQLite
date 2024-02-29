@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ViewElection</title>
+</head>
+<body>
+    <form action="" method="post">
+        {% for i in data %}
+        <table align="center" border="1">
+            <tr>
+                <td>ForDate</td>
+                <td>{{i.election_fordate}}</td>
+            </tr>
+            <tr>
+                <td>Details</td>
+                <td>{{i.election_details}}</td>
+            </tr>
+            <tr>
+                <td  colspan="2" align="center">
+                {% if i.days_difference > 2 %}
+                   Application Over |
+                {% else %}
+                    
+                   <a href="{% url 'Student:viewcandidate' i.id %}">Apply as Candidate |</a>
+                {% endif %}
+                {% if i.election_status == '1' %}
+                <a href="{% url 'Student:candidate' i.id %}">Polling</a>
+                {% elif i.election_status == '2' %}
+                <a href="{% url 'Student:classresult' i.id %}">Result</a>
+                {% if cand.candidate_status == 3 %}
+                <a href="{% url 'Student:CollegeCandidate' i.id %}">Apply for Clg election</a>
+                {% endif %}
+                {% elif i.election_status == '3' %}
+                {% if cand.candidate_status == 3 %}
+                <a href="{% url 'Student:collegevoting' i.id %}">College Polling</a>                {% else %}
+                {% endif %}
+                {% else %}
+                Election Over|<a href="{% url 'Student:CollegeVotingResult' i.id %}">Result</a>
+                {% endif %}
+        </td>
+            </tr>
+            
+        </table><br>
+        {% endfor %}
+    </form>
+</body>
+</html>

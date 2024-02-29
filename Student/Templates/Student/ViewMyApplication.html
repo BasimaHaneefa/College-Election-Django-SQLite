@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ViewMyApplication</title>
+</head>
+<body>
+    <form action="" method="post">
+        <h2 align="center">Class Election Application</h2>
+        <table align="center" border="1">
+            <tr>
+                <th>SL NO</th>
+                <th>NAME</th>
+                <th>EMAIL</th>
+                <th>ADDRESS</th>
+                <th>CONTACT</th>
+                <th>ADMISSION NO</th>
+                <th>PHOTO</th>
+                <th>DEPARTMENT</th>
+                <th>COURSE</th>
+                <th>YEAR</th>
+                <th>GENDER</th>
+                <th>ELECTION DATE</th>
+                <th>ELECTION DETAILS</th>
+                <th>STATUS</th>
+            </tr>
+            {% for i in data %}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{i.candidate_student.student_name}}</td>
+                <td>{{i.candidate_student.student_email}}</td>
+                <td>{{i.candidate_student.student_address}}</td>
+                <td>{{i.candidate_student.student_contact}}</td>
+                <td>{{i.candidate_student.student_adno}}</td>
+                <td><img src="{{i.candidate_student.student_photo.url}}" width="150" height="150"></td>
+                <td>{{i.candidate_student.student_course.department.department_name}}</td>
+                <td>{{i.candidate_student.student_course.course_name}}</td>
+                <td>{{i.candidate_student.student_year.year_classyear}}</td>
+                <td>{{i.candidate_gender}}</td>
+                <td>{{i.candidate_election.election_date}}</td>
+                <td>{{i.candidate_election.election_details}}</td>
+                <td>{% if i.candidate_status == 0 %}
+                   Not Verified yet
+                {% elif i.candidate_status == 1 %}
+                    Accepted
+                {% elif i.candidate_status == 3 %}
+                    Winner
+                {% else %}
+                    Rejected
+                {% endif %}</td>
+            </tr>
+            {%endfor%}
+        </table>
+        <br>
+        <h2 align="center">College Election Application</h2>
+        <table align="center" border="1">
+            <tr>
+                <th>SL NO</th>
+                <th>NAME</th>
+                <th>EMAIL</th>
+                <th>ADDRESS</th>
+                <th>CONTACT</th>
+                <th>ADMISSION NO</th>
+                <th>PHOTO</th>
+                <th>DEPARTMENT</th>
+                <th>COURSE</th>
+                <th>YEAR</th>
+                <th>POSITION</th>
+                <th>ELECTION DATE</th>
+                <th>ELECTION DETAILS</th>
+                <th>STATUS</th>
+            </tr>
+            {% for i in app %}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{i.student.student_name}}</td>
+                <td>{{i.student.student_email}}</td>
+                <td>{{i.student.student_address}}</td>
+                <td>{{i.student.student_contact}}</td>
+                <td>{{i.student.student_adno}}</td>
+                <td><img src="{{i.student.student_photo.url}}" width="150" height="150"></td>
+                <td>{{i.student.student_course.department.department_name}}</td>
+                <td>{{i.student.student_course.course_name}}</td>
+                <td>{{i.student.student_year.year_classyear}}</td>
+                <td>{{i.position.position_name}}</td>
+                <td>{{i.election.election_date}}</td>
+                <td>{{i.election.election_details}}</td>
+                <td>{% if i.candidate_status == 0 %}
+                  <a href="{% url 'Student:Semmark' i.id %}">Upload Mark</a>
+                {% elif i.candidate_status == 1 %}
+                    Accepted
+                {% elif i.candidate_status == 3 %}
+                    Winner
+                {% else %}
+                    Rejected
+                {% endif %}</td>
+            </tr>
+            {%endfor%}
+        </table>
+    </form>
+</body>
+</html>

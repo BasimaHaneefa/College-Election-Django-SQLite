@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AddTeachers</title>
+</head>
+<body>
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table align="center" border="1">
+            <tr>
+                <td>Name</td>
+                <td><input type="text" name="txt_name" id=""></td>
+            </tr>
+            <tr>
+                <td>Address</td>
+                <td><textarea name="txt_address" id="" cols="30" rows="10"></textarea></td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td><input type="email" name="txt_email" id=""></td>
+            </tr>
+            <tr>
+                <td>Contact</td>
+                <td><input type="number" name="txt_contact" id=""></td>
+            </tr>
+            <tr>
+                <td>Department</td>
+                <td><select name="sel_department" id="sel_department">
+                    <option value="">---Select---</option>
+                    {% for i in dep %}
+                    <option value="{{i.id}}">{{i.department_name}}</option>
+                    {% endfor %}   
+                </select></td>
+            </tr>
+            <tr>
+                <td>Course</td>
+                <td><select name="sel_course" id="sel_course">
+                    <option value="">---Select---</option>
+                    {% for i in cou %}
+                    <option value="{{i.id}}">{{i.course_name}}</option>
+                    {% endfor %}
+                </select></td>
+            </tr>
+            
+            <tr>
+                <td>Photo</td>
+                <td><input type="file" name="file_photo" id=""></td>
+            </tr>
+            <tr>
+                <td>Password</td>
+                <td><input type="password" name="txt_pass" id=""></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center"><input type="submit" value="Save" name="sub_save"><input type="submit" value="Cancel" name="sub_cancel"></td>
+            </tr>
+        </table>
+        <table align="center" border="1">
+            <tr>
+                <th>SLNO</th>
+                <th>NAME</th>
+                <th>ADDRESS</th>
+                <th>EMAIL</th>
+                <th>CONTACT</th>
+                <th>DEPARTMENT</th>
+                <th>COURSE</th>
+                <th>Election</th>
+                <th>PHOTO</th>
+                <th>ACTION</th>
+            </tr>
+            {% for i in data %}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{i.teacher_name}}</td>
+                <td>{{i.teacher_address}}</td>
+                <td>{{i.teacher_email}}</td>
+                <td>{{i.teacher_contact}}</td>
+                <td>{{i.teacher_course.department.department_name}}</td>
+                <td>{{i.teacher_course.course_name}}</td>
+                <td>{{i.election.election_details}},{{i.election.election_fordate}}</td>
+                <td><img src="{{i.teacher_photo.url}}" width="150" height="150"></td>
+                <td><a href="{% url 'College:delteacher' i.id %}">Delete</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </form>
+</body>
+</html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    $("#sel_department").change(function () {
+        var did = $(this).val();
+        var ur = "{% url 'College:ajaxcourse' %}"
+        $.ajax({
+            url: ur,
+            data: { did: did, },
+            success: function (data) {
+                $("#sel_course").html(data);
+            },
+        });
+    });
+</script>

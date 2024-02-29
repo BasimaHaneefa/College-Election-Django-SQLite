@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assigned Teacher</title>
+</head>
+<body>
+    <form action="" method="post">
+        <table align="center" border="1">
+            <tr>
+                <td>SL NO</td>
+                <td>NAME</td>
+                <td>PHOTO</td>
+                <td>DEPARTMENT</td>
+            </tr>
+       
+        {% for i in assign %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.assign_teacher.teacher_name}}</td>
+            <td><img src="{{i.assign_teacher.teacher_photo.url}}" width="150" height="150"></td>
+            <td>{{i.assign_teacher.teacher_course.department.department_name}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    </form>
+</body>
+</html>

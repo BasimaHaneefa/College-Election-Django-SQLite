@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ViewMarks</title>
+</head>
+<body>
+    <form action="" method="post">
+        {% csrf_token %}
+        <table align="center" border="1">
+            <tr>
+                <td>Sem1</td>
+                <td>Sem2</td>
+                <td>Sem3</td>
+            </tr>
+           
+            <tr>
+                <td>{{sem1}} {% if sem1 > 4.0 %} Passed {% else %} Failed {% endif %} </td>
+                <td>{{sem2}} {% if sem2 > 4.0 %} Passed {% else %} Failed {% endif %}</td>
+                <td>{{sem3}} {% if sem3 > 4.0 %} Passed {% else %} Failed {% endif %}</td>
+            </tr>
+           
+</body>
+</html>

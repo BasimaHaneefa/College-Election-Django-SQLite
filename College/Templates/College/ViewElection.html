@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ViewElection</title>
+</head>
+<body>
+    <form action="" method="post">
+        {% for i in data %}
+        <table align="center" border="1">
+            <tr>
+                <td>Date</td>
+                <td>{{i.election_fordate}}</td>
+            </tr>
+            <tr>
+                <td>Details</td>
+                <td>{{i.election_details}}</td>
+            </tr>
+            <tr>
+                <td>Election Declared Date</td>
+                <td>{{i.election_date}}</td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    {% if current_date >= election.election_fordate %}
+                        Election Over
+                    {% else %}
+                        <a href="{% url 'College:addteacher' i.id %}">Teacher List</a>
+                    {% endif %}
+                </td>
+            </tr>
+        </table>
+        {% endfor %}
+    </form>    
+</body>
+</html>

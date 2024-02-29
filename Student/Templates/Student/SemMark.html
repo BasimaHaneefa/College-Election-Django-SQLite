@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method="post">
+        {% csrf_token %}
+        <table border="1" align="center">
+            <tr>
+                <td>Sem1(SCPA)</td>
+                <td><input type="text" name="sem1"></td>
+            </tr>
+            
+            <tr>
+                <td>Sem2(SCPA)</td>
+                <td><input type="text" name="sem2"></td>
+            </tr>
+            <tr>
+                <td>Sem3(SCPA)</td>
+                <td><input type="text" name="sem3"></td>
+            </tr>
+            <tr>
+                <td colspan="2"align="center"><input type="submit" name="btn" value="Save"></td>
+            </tr>
+        </table>
+    </form>
+    <br>
+    <table border="1" align="center">
+        <tr>
+            <td>Sl.no</td>
+            <td>Sem1</td>
+            <td>Sem2</td>
+            <td>Sem3</td>
+        </tr>
+        {% for i in mark %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.sem1}}</td>
+            <td>{{i.sem2}}</td>
+            <td>{{i.sem3}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
